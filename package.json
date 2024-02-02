@@ -1,0 +1,12 @@
+{
+    "name": "mqtt-publisher",
+    "version": "1.0.0",
+    "main": "mqtt-publisher.js",
+    "scripts": {
+        "start": "node mqtt-publisher.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.1",
+        "mqtt": "^4.2.3"
+    }
+}
