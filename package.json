@@ -1,12 +1,18 @@
 {
     "name": "mqtt-publisher",
     "version": "1.0.0",
-    "main": "mqtt-publisher.js",
+    "main": "mqtt-publisher.ts",
+    "license": "MIT",
     "scripts": {
-        "start": "node mqtt-publisher.js"
+        "build": "tsc"
     },
     "dependencies": {
         "dotenv": "^16.4.1",
         "mqtt": "^4.2.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.16",
+        "@types/ws": "^8.5.10",
+        "typescript": "^5.3.3"
     }
 }

@@ -1,14 +1,13 @@
-require('dotenv').config();
-
-const mqtt = require('mqtt');
-
+import { config } from "dotenv";
+import * as mqtt from "mqtt";
+config()
 const mqttHost = 'mqtt-broker';
-const mqttPort = process.env.SECURE_PORT;
+const mqttPort = process.env.PORT;
 const mqttUsername = process.env.USERNAME;
 const mqttPassword = process.env.PASSWORD;
 
 const client = mqtt.connect(`mqtt://${mqttHost}`, {
-  port: mqttPort,
+  port: parseInt(mqttPort as string),
   username: mqttUsername,
   password: mqttPassword
 });
@@ -20,10 +19,10 @@ client.on('connect', () => {
     const message = 'TEST DOCKER';
     client.publish('test/topic', message);
     console.log(`Published: ${message}`);
-  }, 1000);
+  }, 4000);
 });
 
-client.on('error', (error) => {
+client.on('error', (error: any) => {
   console.error('MQTT Error:', error);
 });
 
