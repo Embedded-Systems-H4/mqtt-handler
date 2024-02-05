@@ -1,10 +1,11 @@
 import { config } from "dotenv";
+import {topicHandler} from "./topicHandler"
 import { IClientOptions, connect } from "mqtt";
 config();
 
 
 const options: IClientOptions = {
-  host: "mqtt-broker",
+  host: "10.71.202.218",
   username: process.env.USERNAME,
   password: process.env.PASSWORD,
   port: parseInt(process.env.PORT as string),
@@ -31,4 +32,8 @@ client.on("connect", () => {
 
 client.on('message', function (topic, message) {
   console.log(`Received message on topic "${topic}": ${message.toString()}`);
+  topicHandler({
+    topic: topic,
+    message: message.toString()
+  })
 });
