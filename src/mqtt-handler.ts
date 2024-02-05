@@ -5,7 +5,7 @@ config();
 
 
 const options: IClientOptions = {
-  host: "10.71.202.218",
+  host: "127.0.0.1",
   username: process.env.USERNAME,
   password: process.env.PASSWORD,
   port: parseInt(process.env.PORT as string),
@@ -31,9 +31,8 @@ client.on("connect", () => {
 })
 
 client.on('message', function (topic, message) {
-  console.log(`Received message on topic "${topic}": ${message.toString()}`);
   topicHandler({
-    topic: topic,
+    topic,
     message: message.toString()
   })
 });

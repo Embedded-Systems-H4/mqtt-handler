@@ -1,20 +1,33 @@
-import { saveDevice } from "./database/saveDevice";
+import { updateDevice } from "./database/updateDevice";
 import { Device } from "./models/Device";
 
 export const topicHandler = async ({ topic, message }: { topic: string, message: string }) => {
     const action = {
         "devices/register": async () => {
-            console.log(JSON.parse(message))
-            // const device: Device = JSON.parse();
-            // return await saveDevice({
-            //     id: device?.id,
-            //     name: device?.name,
-            //     type: device?.type
-            // });
+            const { id, name, type }: Device = JSON.parse(message)
+            await updateDevice({
+                id,
+                name,
+                type
+            });
+        },
+        "devices/link": async () => {
+            const { id, name, type, user }: Device = JSON.parse(message)
+            await updateDevice({
+                id,
+                name,
+                type,
+                user
+            });
+        },
+        "devices/suspend": async () => {
+            const { id, status }: Device = JSON.parse(message)
+            await updateDevice({
+                id,
+                status
+            });
         }
     }[topic];
 
-    const result = await action()
-
-    console.log(result)
+    action();
 };

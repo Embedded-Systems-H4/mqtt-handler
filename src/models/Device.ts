@@ -1,5 +1,9 @@
+import { User } from "./User";
+
 export interface Device {
-    type: "arduino" | "raspberry" | "door",
-    name: string,
-    id: string
+    id: string,
+    type?: "arduino" | "raspberry",
+    name?: string,
+    user?: User,
+    status?: "active" | "suspended"
 }
