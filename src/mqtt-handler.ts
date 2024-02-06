@@ -1,17 +1,19 @@
 import { config } from "dotenv";
-import {topicHandler} from "./topicHandler"
 import { IClientOptions, connect } from "mqtt";
+import { topicHandler } from "./topicHandler";
 config();
 
 
 const options: IClientOptions = {
   host: "127.0.0.1",
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  port: parseInt(process.env.PORT as string),
+  username: process.env.MQTT_USERNAME,
+  password: process.env.MQTT_PASSWORD,
+  port: parseInt(process.env.MQTT_PORT as string),
   protocol: "mqtt",
   clean: true,
 };
+
+console.log(options)
 
 const client = connect(options);
 
