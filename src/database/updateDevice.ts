@@ -11,10 +11,10 @@ export const updateDevice = async ({
     const deviceId = id
 
     try {
-        await deviceCollection.updateOne({ "deviceId": deviceId },
+        await deviceCollection.updateOne({ "id": deviceId },
             {
                 $set: {
-                    "deviceId": deviceId,
+                    "id": deviceId,
                     ...(typeof name === "string" && { "name": name }),
                     ...(typeof type === "string" && { "type": type }),
                     ...(typeof user === "object" && { "user": user }),

@@ -26,7 +26,16 @@ export const topicHandler = async ({ topic, message }: { topic: string, message:
                 id,
                 status
             });
-        }
+        },
+        "devices/status": async () => {
+            const { id, name, type, user }: Device = JSON.parse(message)
+            await updateDevice({
+                id,
+                name,
+                type,
+                user
+            });
+        },
     }[topic];
 
     action();
