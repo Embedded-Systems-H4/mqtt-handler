@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:latest
 
 WORKDIR /app
 
@@ -15,4 +15,4 @@ COPY . .
 RUN yarn build
 
 # Start the application
-CMD ["node", "dist/index.js"]
+CMD ["yarn", "start"]

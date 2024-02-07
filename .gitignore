@@ -1,2 +1,12 @@
+# local env files
+.env*.local
 .env
+
+# Ignore all Docker files
+docker-compose*
+
+# Ignore database files
+database
+
+dist
 node_modules

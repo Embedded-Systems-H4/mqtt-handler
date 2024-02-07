@@ -3,22 +3,22 @@ import { IClientOptions, connect } from "mqtt";
 import { topicHandler } from "./topicHandler";
 config();
 
-
 const options: IClientOptions = {
   host: process.env.MQTT_HOST,
   username: process.env.MQTT_USERNAME,
   password: process.env.MQTT_PASSWORD,
+  clientId: "handler",
   port: parseInt(process.env.MQTT_PORT as string),
   protocol: "mqtt",
   clean: true,
 };
 
-console.log(options)
 
 const client = connect(options);
 
 client.on('error', (error) => {
-  console.error('MQTT error:', error);
+  console.log(options)
+  console.log('MQTT error:', error);
 });
 
 client.on("connect", () => {

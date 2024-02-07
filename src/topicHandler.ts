@@ -5,12 +5,12 @@ export const topicHandler = async ({ topic, message }: { topic: string, message:
     const action = {
         "devices/register": async () => {
             const { id, name, type }: Device = JSON.parse(message)
-            await updateDevice({
+            return await updateDevice({
                 id,
                 name,
                 type
             });
-        },
+        }
         
         // "devices/link": async () => {
         //     const { id, name, type, user }: Device = JSON.parse(message)
