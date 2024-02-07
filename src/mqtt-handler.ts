@@ -5,7 +5,7 @@ config();
 
 
 const options: IClientOptions = {
-  host: "127.0.0.1",
+  host: process.env.MQTT_HOST,
   username: process.env.MQTT_USERNAME,
   password: process.env.MQTT_PASSWORD,
   port: parseInt(process.env.MQTT_PORT as string),

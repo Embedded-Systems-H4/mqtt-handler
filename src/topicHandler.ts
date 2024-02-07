@@ -11,31 +11,33 @@ export const topicHandler = async ({ topic, message }: { topic: string, message:
                 type
             });
         },
-        "devices/link": async () => {
-            const { id, name, type, user }: Device = JSON.parse(message)
-            await updateDevice({
-                id,
-                name,
-                type,
-                user
-            });
-        },
-        "devices/suspend": async () => {
-            const { id, status }: Device = JSON.parse(message)
-            await updateDevice({
-                id,
-                status
-            });
-        },
-        "devices/status": async () => {
-            const { id, name, type, user }: Device = JSON.parse(message)
-            await updateDevice({
-                id,
-                name,
-                type,
-                user
-            });
-        },
+        
+        // "devices/link": async () => {
+        //     const { id, name, type, user }: Device = JSON.parse(message)
+        //     await updateDevice({
+        //         id,
+        //         name,
+        //         type,
+        //         user
+        //     });
+        // },
+
+        // "devices/suspend": async () => {
+        //     const { id, status }: Device = JSON.parse(message)
+        //     await updateDevice({
+        //         id,
+        //         status
+        //     });
+        // },
+
+        // "devices/status": async () => {
+        //     const { id, name, type }: Device = JSON.parse(message)
+        //     await updateDevice({
+        //         id,
+        //         name,
+        //         type
+        //     });
+        // },
     }[topic];
 
     action();

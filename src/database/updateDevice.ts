@@ -3,8 +3,7 @@ import { database } from "./index"
 export const updateDevice = async ({
     id,
     name,
-    type,
-    user
+    type
 }: Device) => {
     const db = database("MAIN")
     const deviceCollection = db.collection("devices")
@@ -17,7 +16,6 @@ export const updateDevice = async ({
                     "id": deviceId,
                     ...(typeof name === "string" && { "name": name }),
                     ...(typeof type === "string" && { "type": type }),
-                    ...(typeof user === "object" && { "user": user }),
                     "lastUpdatedAt": new Date()
                 }
             },
