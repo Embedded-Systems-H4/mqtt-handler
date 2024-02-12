@@ -10,7 +10,7 @@ export const updateDevice = async ({
     const deviceId = id
 
     try {
-        await deviceCollection.updateOne({ "id": deviceId },
+        const query = await deviceCollection.updateOne({ "id": deviceId },
             {
                 $set: {
                     "id": deviceId,
@@ -23,6 +23,8 @@ export const updateDevice = async ({
                 upsert: true
             }
         )
+
+        console.log(query)
     } catch (error) {
         console.log(error)
     }
