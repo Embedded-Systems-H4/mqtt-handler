@@ -22,7 +22,6 @@ export const publishToMQTT = ({ topic, message }: { topic: string; message: stri
   client.on("connect", () => {
     console.log('Connected to MQTT broker');
 
-    // Publish a message once when connected
     client.publish(topic, message, (err) => {
       if (err) {
         console.error('Publish error:', err);
@@ -30,7 +29,6 @@ export const publishToMQTT = ({ topic, message }: { topic: string; message: stri
         console.log(`Published to ${topic}: ${message}`);
       }
 
-      // Once the message is published, you may want to close the connection
       client.end();
     });
   });
