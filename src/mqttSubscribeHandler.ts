@@ -7,7 +7,7 @@ const options: IClientOptions = {
   host: process.env.MQTT_HOST,
   username: process.env.MQTT_USERNAME,
   password: process.env.MQTT_PASSWORD,
-  clientId: "handler",
+  clientId: "handler-subscribe",
   port: parseInt(process.env.MQTT_PORT as string),
   protocol: "mqtt",
   clean: true,

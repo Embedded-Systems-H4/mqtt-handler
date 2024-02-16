@@ -1,19 +1,27 @@
 import { updateDevice } from "./database/updateDevice";
+import { verifyAccess } from "./database/verifyAccess";
+import { publishToMQTT } from "./mqttPublishHandler";
 
 export const topicHandler = async ({ topic, message }: { topic: string, message: string }) => {
-    (() => {
+    (async () => {
         switch (topic) {
             case "devices/register": {
-                const { id, name, type } = JSON.parse(message);
-                return updateDevice({ id, name, type });
+                const { deviceId, deviceName, deviceType } = JSON.parse(message);
+                return updateDevice({ id: deviceId, name: deviceName, type: deviceType });
             }
-            case "devices/heartbeat": {
-                console.log(message);
-                break;
+            case "devices/access": {
+                const { deviceId, cardId } = JSON.parse(message);
+                const profileHasAccess = await verifyAccess({
+                    cardId,
+                    deviceId
+                })
+                return publishToMQTT(
+                    {
+                        topic: "devices/accessupdate",
+                        message: `${deviceId},${cardId},${profileHasAccess}`
+                    }
+                )
             }
-            // Add more cases as needed for other topics
-            default:
-                console.log("Unknown topic");
         }
     })();
 };

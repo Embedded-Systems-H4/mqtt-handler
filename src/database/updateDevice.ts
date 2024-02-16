@@ -1,21 +1,20 @@
 import { Device } from "../models/Device"
 import { database } from "./index"
 export const updateDevice = async ({
-    id,
-    name,
-    type
+    id: deviceId,
+    name: deviceName,
+    type: deviceType
 }: Device) => {
     const db = database("MAIN")
     const deviceCollection = db.collection("devices")
-    const deviceId = id
 
     try {
         const query = await deviceCollection.updateOne({ "id": deviceId },
             {
                 $set: {
                     "id": deviceId,
-                    ...(typeof name === "string" && { "name": name }),
-                    ...(typeof type === "string" && { "type": type }),
+                    ...(typeof deviceName === "string" && { "name": deviceName }),
+                    ...(typeof deviceType === "string" && { "type": deviceType }),
                     "lastUpdatedAt": new Date()
                 }
             },
