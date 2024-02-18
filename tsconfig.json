@@ -9,11 +9,21 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@src/*": ["src/*"],
-      "@database/*": ["src/database/*"],
-      "@models/*": ["src/models/*"],
+      "@src/*": [
+        "src/*"
+      ],
+      "@database/*": [
+        "src/database/*"
+      ],
+      "@models/*": [
+        "src/d/*"
+      ],
     }
   },
-  "include": ["src/**/*.ts"],  // Adjust the path as per your project structure
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts"
+  ], // Adjust the path as per your project structure
+  "exclude": [
+    "node_modules"
+  ]
 }
