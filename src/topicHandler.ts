@@ -8,7 +8,7 @@ export const topicHandler = async ({ topic, message }: { topic: string, message:
         switch (topic) {
             case "devices/register": {
                 const { deviceId, deviceName, deviceType } = JSON.parse(message);
-                saveLog({
+                const log = await saveLog({
                     type: "device_register",
                     deviceId: deviceId,
                     timestamp: new Date()
@@ -21,7 +21,7 @@ export const topicHandler = async ({ topic, message }: { topic: string, message:
                     cardId,
                     deviceId
                 })
-                saveLog({
+                await saveLog({
                     type: "device_access_update",
                     cardId: cardId,
                     deviceId: deviceId,
